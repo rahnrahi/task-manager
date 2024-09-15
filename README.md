@@ -30,6 +30,7 @@ process.env.DB_USER
 process.env.DB_PASS 
 process.env.DB_NAME
 ``` 
+**3.** Create tmpdb folder in project root 
 
 **4.** Build Adminer, and MySQL containers
 ```sh
