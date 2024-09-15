@@ -2,6 +2,7 @@ const db = require("../models");
 const users = db.users;
 const tasks = db.tasks;
 const { getTasks } = require("../services/tasks.service");
+const { setRedisAsync, delRedisAsync, getRedisAsync } = require("../config/redis.config");
 
 // Create and Save a new Tutorial
 exports.setUp = async (req, res) => {
@@ -34,6 +35,9 @@ exports.removeTask = async (req, res) => {
     await tasks.destroy({
       where:{taskId}
     });
+
+    await delRedisAsync(taskId);
+
     res.send("Ok");
   } catch (error) {
     res.status(500).send({
@@ -46,7 +50,10 @@ exports.removeTask = async (req, res) => {
 exports.getTask = async (req, res) => {
   const taskId = req.params.taskId;
   try {
-    const task = await tasks.findByPk(taskId);
+    let task = await getRedisAsync(taskId);
+    if(task==null){
+      task = await tasks.findByPk(taskId);
+    }
     res.send(task);
   } catch (error) {
     res.status(500).send({
@@ -58,8 +65,10 @@ exports.getTask = async (req, res) => {
 exports.saveTask = async (req, res) => {
   const userId = req.params.userId;
   try {
-    const task = req.body?.taskId===''? addNewTask(req.body, userId) : editTask(req.body);
+    const task = req.body?.taskId===''? await addNewTask(req.body, userId) :  await editTask(req.body);
+    await setRedisAsync(task.taskId, JSON.stringify(task));
     res.send(task);
+    
   } catch (err) {
     res.status(500).send({
       message:

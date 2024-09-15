@@ -8,7 +8,8 @@
 #public resources
 /public
 /tmp
-/tmpdb/*
+tmpdb/*
+redis_data/*
 ~/
 # testing
 /coverage

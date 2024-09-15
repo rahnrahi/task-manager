@@ -4,6 +4,7 @@ const app = express();
 require('dotenv').config();
 
 const joiSwagger = require("./app/validators/validator");
+const { redisClient } = require('./app/config/redis.config');
 
 var corsOptions = {
   origin: `http://localhost:${process.env.CLIENT_PORT}`,
@@ -31,9 +32,12 @@ const PORT = process.env.PORT || 7003;
 db.sequelize
   .sync()
   .then(() => {
-    joiSwagger.wrapRouter(app).listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}.`);
-    });
+    redisClient.connect().then(c=>{
+      joiSwagger.wrapRouter(app).listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}.`);
+      });
+    })
+    
   })
   .catch((err) => {
     console.log("Failed to sync db: " + err.message);

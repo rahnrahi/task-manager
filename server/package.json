@@ -16,6 +16,7 @@
     "express-joi-swagger": "^0.0.2-alpha.0",
     "joi": "^17.10.1",
     "mysql2": "^2.3.3",
+    "redis": "^4.7.0",
     "sequelize": "^6.32.0",
     "underscore": "^1.13.6"
   },

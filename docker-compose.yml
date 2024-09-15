@@ -15,3 +15,11 @@ services:
       ADMINER_DEFAULT_SERVER: mysql_db_container
     ports:
       - 8080:8080
+  redis_container:
+    image: docker.io/bitnami/redis:7.4
+    environment:
+      - REDIS_PASSWORD=redis12task
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./redis_data:/bitnami/redis/data
