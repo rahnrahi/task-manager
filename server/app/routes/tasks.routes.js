@@ -3,33 +3,34 @@ const schemas = require("../validators/schemas");
 const joiSwagger = require("../validators/validator");
 const router = joiSwagger.wrapRouter(require("express").Router(), "/api");
 
+// Add a task
 router.post(
-  "/setup",
+  "/tasks",
   {
-    summary: "Sets up intial task-manager",
-    description: "Sets up the intial task-manager",
-    validate: {
-      body: schemas.setUp,
-    },
-  },
-  taskController.setUp
-);
-
-// Save a task add:edit
-router.post(
-  "/task/:userId",
-  {
-    summary: "save a task",
+    summary: "Add a task",
     description: "save a task to list",
     validate: {
       body: schemas.addTask,
     },
   },
-  taskController.saveTask
+  taskController.addTask
+);
+
+// Update a task 
+router.put(
+  "/tasks/:id",
+  {
+    summary: "Update a task",
+    description: "Update a task to list",
+    validate: {
+      body: schemas.addTask,
+    },
+  },
+  taskController.updateTask
 );
 
 router.delete(
-  "/task/:taskId",
+  "/tasks/:id",
   {
     summary: "Remove a task with id",
     description: "Remove a task with id",
@@ -41,7 +42,7 @@ router.delete(
 );
 
 router.get(
-  "/task/:taskId",
+  "/tasks/:id",
   {
     summary: "Get a task with id",
     description: "Get a task with id",
@@ -53,10 +54,10 @@ router.get(
 );
 
 router.get(
-  "/transactions",
+  "/tasks",
   {
-    summary: "Get all transactions",
-    description: "Gets a list of transactions for a task-manager",
+    summary: "Get all tasks",
+    description: "Gets a list of tasks for a task-manager",
     validate: {
       query: schemas.findAllTasks,
     },

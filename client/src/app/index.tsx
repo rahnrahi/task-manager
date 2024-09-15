@@ -15,7 +15,6 @@ import { GlobalStyle } from "styles/global-styles";
 import AddTask from "./pages/AddTask/Loadable";
 import { NotFoundPage } from "./pages/NotFoundPage/Loadable";
 import TasksPage from "./pages/Tasks/Loadable";
-import SetupAccountPage from "./pages/SetupAccount/Loadable";
 import LoadingOverlay from "react-loading-overlay-ts";
 import { RootState, useSelector } from "./store";
 
@@ -35,10 +34,10 @@ export function App() {
       </Helmet>
       <LoadingOverlay active={isLoading} spinner text="Loading your content...">
         <Routes>
+          <Route path="/"  element={<TasksPage />} />
           <Route path="/add-task" element={<AddTask />} />
           <Route path="/edit-task/:taskId" element={<AddTask />} />
           <Route path="/tasks" element={<TasksPage />} />
-          <Route path="/" element={<SetupAccountPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </LoadingOverlay>

@@ -9,7 +9,7 @@ export const getTasks = createAsyncThunk(
     const userId = localStorage.getItem("userId");
     try {
       let response: any = await request(
-        `transactions?userId=${userId}&limit=${props.limit}&offset=${props.offset}&sort=${props.sort}&order=${props.sortOrder}`
+        `tasks?userId=${userId}&limit=${props.limit}&offset=${props.offset}&sort=${props.sort}&order=${props.sortOrder}`
       );
       return processTaskResponse(response);
     } catch (error) {
@@ -21,12 +21,13 @@ export const getTasks = createAsyncThunk(
 export const saveTask = createAsyncThunk(
   "task/saveTask",
   async (payload: object, api) => {
-    const userId = localStorage.getItem("userId");
+    const taskId = payload['taskId'];
+    delete payload['taskId'];
     try {
       let response: any = await request(
-        `task/${userId}`,
+        `tasks/${taskId}`,
         {
-          method: "POST",
+          method: taskId===''?"POST":"PUT",
           headers: {
             "Content-Type": "application/json",
           },
@@ -34,7 +35,7 @@ export const saveTask = createAsyncThunk(
         }
       );
       return {
-        balance: response?.balance || 0,
+        response
       };
     } catch (error) {
       api.rejectWithValue(error);
@@ -47,7 +48,7 @@ export const removeTask = createAsyncThunk(
   async (taskId: GridRowId, api) => {
     try {
       let response: any = await request(
-        `task/${taskId}`,
+        `tasks/${taskId}`,
         {
           method: "DELETE",
           headers: {
@@ -69,7 +70,7 @@ export const getTask = createAsyncThunk(
   async (taskId: GridRowId, api) => {
     try {
       let response: any = await request(
-        `task/${taskId}`,
+        `tasks/${taskId}`,
         {
           method: "GET",
           headers: {

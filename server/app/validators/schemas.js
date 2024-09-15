@@ -4,7 +4,13 @@ const schemas = {
     username: Joi.string().required(),
   }),
   addTask: Joi.object().keys({
-    taskId: Joi.string().uuid().allow(''),
+    description: Joi.string().required(),
+    title: Joi.string().required(),
+    priority: Joi.string().required(),
+    status: Joi.string().required(),
+    deadline: Joi.date().required(),
+  }),
+  updateTask: Joi.object().keys({
     description: Joi.string().required(),
     title: Joi.string().required(),
     priority: Joi.string().required(),
@@ -12,7 +18,7 @@ const schemas = {
     deadline: Joi.date().required(),
   }),
   removeTask: Joi.object().keys({
-    taskId: Joi.string().uuid().required(),
+    id: Joi.string().uuid().required(),
   }),
   findAllTasks: Joi.object().keys({
     userId: Joi.string().uuid().required(),

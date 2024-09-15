@@ -19,9 +19,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.users = require("./users.model.js")(sequelize, Sequelize);
 db.tasks = require("./tasks.model.js")(sequelize, Sequelize);
-
-db.users.hasMany(db.tasks);
 
 module.exports = db;

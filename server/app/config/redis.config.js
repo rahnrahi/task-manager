@@ -16,6 +16,7 @@ const getRedisAsync = async (key) => {
 };
 
 const getBatchRedisAsync = async (keys) => {
+    if(keys.length===0) return [];
     return await redisClient.mGet(keys);
  };
 

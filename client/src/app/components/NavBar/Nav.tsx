@@ -10,16 +10,8 @@ import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 
 export function Nav() {
-  const reduxDispatch = useDispatch();
   let navigate = useNavigate();
-  const { pathname } = useLocation();
 
-  useEffect(() => {
-    const userId = localStorage.getItem("userId");
-    if (!userId && pathname!=="/") {
-      navigate("/");
-    } 
-  }, []);
   return (
       <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
