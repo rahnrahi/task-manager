@@ -45,6 +45,7 @@ docker-compose up -d
 Site URL: `http://localhost:3000/`
 Swagger API: `http://localhost:5001/swagger`
 API root: `http://localhost:5001/api`
+Adminer root: `http://localhost:8000`
 
 ### Shutting down
 ```sh
@@ -55,3 +56,10 @@ Stop and remove all containers, networks, and images
 docker-compose down --rmi all
 ```
 
+**5.** create initial DB named tasks
+```sh
+Login to adminer: `http://localhost:8000`
+user credentials:
+username: root
+password: rootpassword
+```
