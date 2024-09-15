@@ -8,7 +8,7 @@
 #public resources
 /public
 /tmp
-tmpdb/*
+/tmpdb/*
 ~/
 # testing
 /coverage
