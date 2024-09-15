@@ -6,8 +6,8 @@ const router = joiSwagger.wrapRouter(require("express").Router(), "/api");
 router.post(
   "/setup",
   {
-    summary: "Sets up intial wallet",
-    description: "Sets up the intial wallet",
+    summary: "Sets up intial task-manager",
+    description: "Sets up the intial task-manager",
     validate: {
       body: schemas.setUp,
     },
@@ -56,7 +56,7 @@ router.get(
   "/transactions",
   {
     summary: "Get all transactions",
-    description: "Gets a list of transactions for a wallet",
+    description: "Gets a list of transactions for a task-manager",
     validate: {
       query: schemas.findAllTasks,
     },

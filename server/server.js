@@ -21,7 +21,7 @@ const db = require("./app/models");
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to wallet api" });
+  res.json({ message: "Welcome to task-manager api" });
 });
 
 app.use('/api', require("./app/routes/tasks.routes"));

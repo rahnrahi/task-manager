@@ -1,7 +1,7 @@
 {
-  "name": "wallet-api",
+  "name": "task-manager-api",
   "version": "1.0.0",
-  "description": "Node.js Rest Apis for Wallet with Express, Sequelize & MySQL",
+  "description": "Node.js Rest Apis for task-manager with Express, Sequelize & MySQL",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

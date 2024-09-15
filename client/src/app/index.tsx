@@ -24,8 +24,8 @@ export function App() {
 
   return (
     <BrowserRouter>
-      <Helmet titleTemplate="%s - Wallet" defaultTitle="React Wallet APP">
-        <meta name="description" content="Wallet Transactions" />
+      <Helmet titleTemplate="%s - task-manager" defaultTitle="React task-manager APP">
+        <meta name="description" content="task-manager Transactions" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com"  />
         <link
